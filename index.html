@@ -3,13 +3,25 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Timer</title>
-		<script src="script.js" async></script>
+		<link rel="stylesheet" href="./src/style.css" />
+		<title>JS Counter with Class</title>
 	</head>
 	<body>
-		<div>
-			<button>add</button>
-		</div>
+		<header>
+			<h1 class="title">Javascript Counter</h1>
+			<button class="btnAdd">+ &nbsp;Add Counter</button>
+		</header>
+		<main>
+			<ul class="counterList">
+				<li id=0>
+					<h1 class='display'>0</h1>
+					<button class='btnInc'>+</button>
+					<button class='btnDec'>−</button>
+					<button class='btnRe'>Reset</button>
+					<button class='btnDel'>×</button>
+				</li>
+			</ul>
+		</main>
+		<script type="module" src="src/App.js"></script>
 	</body>
 </html>
