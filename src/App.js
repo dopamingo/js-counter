@@ -81,7 +81,6 @@ const App = () => {
 			});
 			COUNTERS = newCounter;
 		}
-		console.log(COUNTERS);
 		saveCounters();
 	}
 	
