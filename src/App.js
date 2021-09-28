@@ -7,25 +7,52 @@ const App = () => {
 	const btnAdd = document.querySelector(".btnAdd");
 
 	let newID = 0;
-	let COUNTERS = [{
-		id: newID,
-		counter: new Counter(),
-	}];
+	let COUNTERS = [];
 
-	const addCounter = () => {
-		const counterOBJ = {
-			id: ++newID,
-			counter: new Counter(),
-		}
-		COUNTERS.push(counterOBJ);
+	const counterTemplete = (id, value) => {
 		list.insertAdjacentHTML('beforeend',
-		`<li id=${newID}>
-			<h1 class='display'>0</h1>
+		`<li id=${id}>
+			<h1 class='display'>${value}</h1>
 			<button class='btnInc'>+</button>
 			<button class='btnDec'>−</button>
 			<button class='btnRe'>Reset</button>
 			<button class='btnDel'>×</button>
 		</li>`);
+	}
+
+	const loadCounters = () => {
+        const loadedCounters = localStorage.getItem("counters");
+        if (loadedCounters != null) {
+            const parsedCounters = JSON.parse(loadedCounters);
+            parsedCounters.forEach((counter) => {
+                paintCounters(counter.id, counter.counter);
+			});
+			newID = ++parsedCounters[parsedCounters.length-1].id;
+		}
+	}
+
+	const saveCounters = () => {
+		localStorage.setItem("counters", JSON.stringify(COUNTERS));
+	}
+	
+	const paintCounters = (id, counter) => {
+		const counterOBJ = {
+			id: id,
+			counter: new Counter(counter.value),
+		}
+		COUNTERS.push(counterOBJ);
+		counterTemplete(id, counter.value);
+	}
+
+	const addCounter = () => {
+		const counterOBJ = {
+			id: newID,
+			counter: new Counter(),
+		}
+		COUNTERS.push(counterOBJ);
+		counterTemplete(newID, 0);
+		saveCounters();
+		newID++;
 	}
 
 	const btnControl = (e) => {
@@ -54,10 +81,13 @@ const App = () => {
 			});
 			COUNTERS = newCounter;
 		}
+		console.log(COUNTERS);
+		saveCounters();
 	}
 	
 	list.addEventListener('click', btnControl);
 	btnAdd.addEventListener('click', addCounter);
+	loadCounters();
 }
 
 App();

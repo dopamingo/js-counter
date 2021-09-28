@@ -11,6 +11,6 @@ A simple counter app for learning Class Syntax in vanilla JavaScript.
 - 로컬 스토리지에 현재 카운터의 개수와 각 카운터의 숫자 값을 저장한다.
 
 ## Todo
-- [ ] 로컬 스토리지에 여러 개의 카운터 데이터를 관리한다.
+- [X] 로컬 스토리지에 여러 개의 카운터 데이터를 관리한다.
 
 https://dopamingo.github.io/js-counter/
